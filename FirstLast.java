@@ -24,24 +24,17 @@ public class FirstLast
     }
     static String find(int arr[],int n)
     {
-        int a[]=new int[2];
+        int a[]={-1,-1};
         int s=0;
         int l=arr.length-1;
         int m;
         while(l>=s)
         {
             m=(l+s)/2;
-            if(arr[s]==n)
-            {
-                a[0]=s;
-                a[1]=l-s;
-                break;
-            }
-            else if(arr[m]==n)
+            if(arr[m]==n)
             {
                 a[0]=m;
-                a[1]=l-m;
-                break;
+                l=m-1;
             }
             else if(arr[m]>n)
             {
@@ -52,13 +45,25 @@ public class FirstLast
                 s=m+1;
             }
         }
-        if (l<s)
+        s=0;
+        l=arr.length;
+        while(l>=s)
         {
-            a[0]=-1;
-            a[1]=-1;
-            return Arrays.toString(a);
+            m=(l+s)/2;
+            if(arr[m]==n)
+            {
+                a[1]=m;
+                s=m+1;
+            }
+            else if(arr[m]>n)
+            {
+                l=m-1;
+            }
+            else
+            {
+                s=m+1;
+            }
         }
-        else
         return Arrays.toString(a);
     }
 }
